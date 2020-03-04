@@ -67,8 +67,8 @@ audio {
   z-index: 0;
 }
 
-#particles-js{
-  position: fixed;
+#background{
+  position: relative;
   top: 0; bottom: 0; right: 0; left: 0;
   background-color: firebrick;
   height: 100%;
@@ -86,4 +86,12 @@ audio {
   position: absolute;
   top: 200px;
   right: 200px;
+}
+
+.bubble{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: orange;
+  border-radius: 50%;
 }

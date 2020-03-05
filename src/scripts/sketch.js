@@ -1,9 +1,12 @@
 import ml5 from "ml5";
-// import "../styles/index";
 
-const sketch = (p) => {
-  // let x = 100;
-  // let y = 100;
+export var soundArr = []
+
+export const clearArr = () => { 
+  soundArr = [];
+}
+
+export const sketch = (p) => {
   let mic;
   let freq = 0;
   let pitch;
@@ -11,7 +14,6 @@ const sketch = (p) => {
 
 
   p.setup = function () {
-    // p.createCanvas(800, 400);
     p.userStartAudio();
     audioContext = p.getAudioContext();
     mic = new p5.AudioIn();
@@ -35,7 +37,7 @@ const sketch = (p) => {
       var vol = mic.getLevel() * 100;
       if (frequency && vol > 0.7) {
         freq = frequency;
-        console.log("Vol: " + vol.toString() + " Freq: " + freq.toString());
+        soundArr.push(freq)
       }
 
     }
@@ -43,21 +45,11 @@ const sketch = (p) => {
   }
 
   function modelLoaded(){
-    // console.log('model loaded!');
     pitch.getPitch(gotPitch);
   }
 
 
   p.draw = function () {
-    // p.background(0);
-    // p.fill(255);
-    // p.rect(x, y, 50, 50);
-    // var vol = mic.getLevel() * 100;
-    // if (vol > .7){
-    // // console.log(vol);
-    // }
   };
 
 };
-
-export default sketch;

@@ -4,8 +4,10 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, body, .background {
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .wrapper {
@@ -16,11 +18,6 @@ html, body {
 
 .main-controls {
   padding: 0.5rem 0;
-}
-
-canvas {
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 #buttons {
@@ -64,10 +61,11 @@ audio {
   display: block;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: -1;
 }
 
 #background{
+  z-index: -10;
   position: relative;
   top: 0; bottom: 0; right: 0; left: 0;
   background-color: firebrick;
@@ -79,16 +77,14 @@ audio {
   position: absolute;
 }
 
-#primary-sq {
-  height: 100px;
-  width: 100px;
-  background-color: aquamarine;
-  position: absolute;
-  top: 200px;
-  right: 200px;
+#dropHolder{
+  width: 100%;
+  margin: 0 auto;
+  display: block;
 }
 
 .bubble{
+  z-index: 0;
   position: absolute;
   transition: width .19s, height .19s, background-color .19s;
   transition: all 1s ease;
@@ -98,6 +94,14 @@ audio {
   transform: rotate(45deg);
   margin-top: 12px;
   box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+  border: white 2px solid;
+}
+
+.water-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .wiggle {
@@ -129,12 +133,6 @@ audio {
 }
 
 @keyframes fall {
-    // 0%   { transform:matrix(0.71,0.71,-0.71,0.71,0,0); }
-    // 20%   { transform:matrix(0.71,0.71,-0.71,0.71,0,50); }
-    // 40%   { transform:matrix(0.71,0.71,-0.71,0.71,0,125); }
-    // 60%   { transform:matrix(0.71,0.71,-0.71,0.71,0,225); }
-    // 80%   { transform:matrix(0.71,0.71,-0.71,0.71,0,350); }
-    // 100%  { transform:matrix(0.71,0.71,-0.71,0.71,0,500); }
-  from {top: 0px;}
-  to {top: 2000px;}
+  from {top: 0%;}
+  to {top: 300%;}
 }

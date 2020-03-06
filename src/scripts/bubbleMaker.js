@@ -23,14 +23,14 @@ export const moveBubble = (bubble, parent) => {
 
 export const getBubbleColor = (pitch) => {
     if (pitch < .2) {
-        return [colorArr[0], "90%"];
+        return [colorArr[0], "90%", 0.06];
     } else if (pitch >= .2 && pitch < .4) {
-        return [colorArr[1], "70%"];
+        return [colorArr[1], "70%", 0.25];
     } else if (pitch >= .4 && pitch < .6) {
-        return [colorArr[2], "50%"];
+        return [colorArr[2], "50%", 0.45];
     } else if (pitch >= .6 && pitch < .8) {
-        return [colorArr[3], "30%"];
+        return [colorArr[3], "30%", 0.63];
     } else {
-        return [colorArr[4], "10%"];
+        return [colorArr[4], "10%", 0.85];
     }
 }

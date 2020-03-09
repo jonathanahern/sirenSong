@@ -6,11 +6,13 @@ import {moveBubble, getBubbleColor} from "./scripts/bubbleMaker";
 
 let makingBubble = false;
 let bubbleSize = 25;
-let marginTop = 8.0;
+let marginTop = 10.0;
+let waveHeight = 100;
 let currentBubble;
 let currentPitchArr = [];
 let splashPos = 0;
 let splashPosArr = [];
+let splashWaveArr = [];
 const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,9 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // document.addEventListener("click", myFunction);
 
-  function splash(pos) {
-    $(".water-container").raindrops("splash", pos);
+  function splash(pos, wave) {
+    $(".water-container").raindrops("splash", pos, wave);
     splashPosArr.shift();
+    splashWaveArr.shift();
   }
 
   setInterval(function () {
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         splashPos = colorReturn[2];
         currentBubble.className = "bubble wiggle";
         parent.appendChild(currentBubble);
-      } else if (makingBubble && soundSize > 0) {
+      } else if (makingBubble && soundSize > 0 && waveHeight < 800) {
         let newPitch = (arrAvg(soundArr) - 120) * .0042;
         currentPitchArr.push(newPitch);
         let avgPitch = arrAvg(currentPitchArr);
@@ -55,19 +58,23 @@ document.addEventListener("DOMContentLoaded", () => {
         currentBubble.style.backgroundColor = newColorReturn[0];
         currentBubble.style.right = newColorReturn[1];
         splashPos = newColorReturn[2];
-        bubbleSize += 5;
+        bubbleSize += 3;
         marginTop += .75;
+        waveHeight += 25;
         currentBubble.style.height = `${bubbleSize}px`;
         currentBubble.style.width = `${bubbleSize}px`;
         currentBubble.style.marginTop = `${marginTop}px`;
-      } else if (makingBubble && soundSize < 1) {
+      } else if ((makingBubble && soundSize < 1) || waveHeight >= 775) {
+        console.log(waveHeight);
         currentPitchArr = [];
         makingBubble = false;
-        bubbleSize = 50;
-        marginTop = 12.0;
+        bubbleSize = 25;
+        marginTop = 10.0;
         moveBubble(currentBubble, parent);
         splashPosArr.push(splashPos);
-        setTimeout(function() { splash(splashPosArr[0]); },1400);
+        splashWaveArr.push(waveHeight);
+        waveHeight = 100;
+        setTimeout(function () { splash(splashPosArr[0], splashWaveArr[0]); },1400);
       }
       clearArr();
   }, 200);

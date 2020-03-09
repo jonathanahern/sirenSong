@@ -5,8 +5,8 @@ $.widget("water.raindrops", {
     canvasHeight: 150, // Height of the water. Default is 50% of the parent's height
     color: "#00aeef", // Water Color
     frequency: 0, // Raindrops frequency. Higher number means more frequent raindrops.
-    waveHeight: 250, // Wave height. Higher number means higher waves created by raindrops.
-    density: 0.02, // Water density. Higher number means shorter ripples.
+    waveHeight: 100, // Wave height. Higher number means higher waves created by raindrops.
+    density: 0.03, // Water density. Higher number means shorter ripples.
     rippleSpeed: 0.1, // Speed of the ripple effect. Higher number means faster ripples.
     rightPadding: 20, // To cover unwanted gaps created by the animation.
     position: "absolute",
@@ -56,8 +56,16 @@ $.widget("water.raindrops", {
     };
   },
 
-  splash: function(pos) {
+  splash: function(pos, wave) {
+    if (wave < 150) {
+      this.options.rippleSpeed = .2;
+    } else if ( wave >= 150 && wave <= 350) {
+      this.options.rippleSpeed = .1;
+    } else {
+      this.options.rippleSpeed = .05;
+    }
     this.options.splashPos = pos;
+    this.options.waveHeight = wave;
   },
 
   updateSprings: function(spread) {

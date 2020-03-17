@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentBubble.style.width = `${bubbleSize}px`;
         currentBubble.style.marginTop = `${marginTop}px`;
       } else if ((makingBubble && soundSize < 1) || waveHeight >= 775) {
-        console.log(waveHeight);
         currentPitchArr = [];
         makingBubble = false;
         bubbleSize = 25;

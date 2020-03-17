@@ -16,10 +16,14 @@ let splashWaveArr = [];
 const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  console.log('DOM fully loaded and parsed');
+  createEventListeners();
   const containerElement = document.getElementById("p5-container");
   let parent = document.getElementById("dropHolder");
 
   function startListening() {
+    console.log('listen');
     new p5(sketch, containerElement);
   }
 
@@ -28,8 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   jQuery(".water-container").raindrops({
     color: "#0bd"
   });
-
-  // document.addEventListener("click", myFunction);
 
   function splash(pos, wave) {
     $(".water-container").raindrops("splash", pos, wave);
@@ -79,3 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 200);
 
 });
+
+function createEventListeners(){
+
+  document.getElementById("primary-sq").addEventListener("click", startDate);
+
+  function startDate() {
+    document.getElementById("primary-sq").innerHTML = "clicked";
+  }
+}

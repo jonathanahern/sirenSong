@@ -91,4 +91,5 @@ function createEventListeners(){
     document.getElementById("primary-sq").innerHTML = "clicked";
     startListening();
   }
+  
 }

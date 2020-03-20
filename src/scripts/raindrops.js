@@ -17,6 +17,7 @@ $.widget("water.raindrops", {
 
   _create: function() {
     var canvas = window.document.createElement("canvas");
+    canvas.id = "canvasWater";
     if (!this.options.canvasHeight) {
       this.options.canvasHeight = this.element.height() / 2;
     }
@@ -54,6 +55,21 @@ $.widget("water.raindrops", {
       this.v += -rippleSpeed * this.p - density * this.v;
       this.p += this.v;
     };
+  },
+
+  resizeCanvas: function () {
+    canvas = document.getElementById("canvasWater");
+
+    this.options.canvasHeight = this.element.height() / 4;
+    this.options.canvasWidth = this.element.width();
+    
+    this.options.realWidth = this.options.canvasWidth + this.options.rightPadding;
+    canvas.height = this.options.canvasHeight;
+    canvas.width = this.options.realWidth;
+
+    this.ctx = canvas.getContext("2d");
+    this.ctx.fillStyle = this.options.color;
+
   },
 
   splash: function(pos, wave) {

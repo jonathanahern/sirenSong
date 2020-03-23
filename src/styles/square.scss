@@ -1,41 +1,96 @@
+#herd-container{
+	width: 50%;
+	min-width: 500px;
+	height: 450px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	z-index: 1000;
+}
+
 .square {
 	box-sizing: border-box;
 	border: 3px white solid;
 	border-radius: 5%;
-	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-	transform: translatey(0px);
-	animation: float 3s ease-in-out infinite;
+	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);	
 	position: absolute;
 }
 
 #primary-sq {
-  height: 150px;
-  width: 200px;
-  background-color: aquamarine;
-	top: 20%;
+	height: 150px;
+	width: 200px;
+	background-color: aquamarine;
+	top: 30%;
 	left: 50%;
+	animation: float 3s ease-in-out infinite;
 }
 
 #sq1 {
-  height: 75px;
-  width: 125px;
-  background-color: pink;
-
+	height: 75px;
+	width: 100px;
+	background-color: pink;
+	animation: float 2.9s ease-in-out infinite;
 	top: 6%;
 	left: 30%;
+}
+
+#sq2 {
+	height: 100px;
+	width: 75px;
+	background-color: pink;
+	animation: float 2.2s ease-in-out infinite;
+	top: 46%;
+	left: 80%;
+}
+
+#sq3 {
+	height: 100px;
+	width: 175px;
+	background-color: pink;
+	animation: float 2.4s ease-in-out infinite;
+	top: 3%;
+	left: 66%;
+}
+
+#sq4 {
+	height: 70px;
+	width: 70px;
+	background-color: pink;
+	animation: float 2.5s ease-in-out infinite;
+	top: 59%;
+	left: 16%;
+}
+
+#sq5 {
+	height: 90px;
+	width: 125px;
+	background-color: pink;
+	animation: float 2.7s ease-in-out infinite;
+	top: 32%;
+	left: 18%;
+}
+
+#sq6 {
+	height: 110px;
+	width: 140px;
+	background-color: pink;
+	animation: float 2.8s ease-in-out infinite;
+	top: 70%;
+	left: 50%;
 }
 
 @keyframes float {
 	0% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px) ;
+		transform: translatey(0px) translateX(-50%);
 	}
 	50% {
 		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-		transform: translatey(-10px);
+		transform: translatey(-10px) translateX(-50%);
 	}
 	100% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px);
+		transform: translatey(0px) translateX(-50%);
 	}
 }

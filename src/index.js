@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createEventListeners();
   
- 
   jQuery(".water-container").raindrops({
     color: "#0bd"
   });

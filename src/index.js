@@ -20,6 +20,7 @@ function startListening() {
   console.log('listen');
   const containerElement = document.getElementById("p5-container");
   new p5(sketch, containerElement);
+  document.getElementById("sq1").classList.remove("sq1Start");
   document.getElementById("sq1").classList.add("sq1ComeOut");
 }
 

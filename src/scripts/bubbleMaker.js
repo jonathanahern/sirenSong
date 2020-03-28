@@ -92,7 +92,7 @@ const getBubbleColor = (pitch) => {
     } else if (pitch >= .6 && pitch < .8) {
         return [colorArr[3], "30%", 0.7];
     } else {
-        return [colorArr[4], "10%", 0.88];
+        return [colorArr[4], "10%", 0.89];
     }
 }
 

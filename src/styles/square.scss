@@ -30,10 +30,19 @@
 	height: 75px;
 	width: 110px;
 	background-color: pink;
-	animation: float 2.9s ease-in-out infinite;
-	top: 6%;
-	left: 30%;
 }
+
+.sq1Start{
+	top: 30%;
+	left: 50%;
+}
+
+.sq1ComeOut {
+	animation-delay: 5s;
+	animation: comeOut1 1.9s ease;
+}
+
+
 
 #sq2 {
 	height: 100px;
@@ -93,6 +102,11 @@
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 		transform: translatey(0px) translateX(-50%);
 	}
+}
+
+@keyframes comeOut1 {
+  0%   {top: 30%; left: 50%;}
+  100% {top: 6%; left: 30%}
 }
 
 

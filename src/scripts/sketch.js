@@ -45,6 +45,7 @@ export const sketch = (p) => {
   }
 
   function modelLoaded(){
+    console.log("model loaded")
     pitch.getPitch(gotPitch);
   }
 

@@ -20,6 +20,11 @@ function startListening() {
   console.log('listen');
   const containerElement = document.getElementById("p5-container");
   new p5(sketch, containerElement);
+  setTimeout(moveSq1, 5000);
+}
+
+function moveSq1(){
+  document.getElementById("primary-sq").innerHTML = "";
   document.getElementById("sq1").classList.remove("sq1Start");
   document.getElementById("sq1").classList.add("sq1ComeOut");
 }
@@ -29,7 +34,9 @@ function createEventListeners(){
   document.getElementById("primary-sq").addEventListener("click", squareClicked);
 
   function squareClicked() {
-    document.getElementById("primary-sq").innerHTML = "clicked";
+    let obj = document.getElementById("primary-sq");
+    obj.removeEventListener("click", squareClicked);
+    obj.innerHTML = "LOADING";
     startListening();
   }
 

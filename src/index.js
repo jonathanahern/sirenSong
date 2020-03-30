@@ -4,8 +4,11 @@ import "./scripts/raindrops";
 import { sketch } from "./scripts/sketch";
 import { bubbleLoop } from "./scripts/bubbleMaker";
 
+let square;
+
 document.addEventListener("DOMContentLoaded", () => {
 
+  square = document.getElementById("primary-sq");
   createEventListeners();
   
   jQuery(".water-container").raindrops({
@@ -20,13 +23,19 @@ function startListening() {
   console.log('listen');
   const containerElement = document.getElementById("p5-container");
   new p5(sketch, containerElement);
-  setTimeout(moveSq1, 5000);
+  setTimeout(moveSq1, 3000);
 }
 
 function moveSq1(){
-  document.getElementById("primary-sq").innerHTML = "";
-  document.getElementById("sq1").classList.remove("sq1Start");
-  document.getElementById("sq1").classList.add("sq1ComeOut");
+  square.innerHTML = "";
+  square.classList.add("riseUp");
+  setTimeout(startFloating, 5000);
+}
+
+function startFloating(){
+  console.log("float");
+  square.classList.remove("riseUp");
+  square.classList.add("float");
 }
 
 function createEventListeners(){
@@ -34,9 +43,8 @@ function createEventListeners(){
   document.getElementById("primary-sq").addEventListener("click", squareClicked);
 
   function squareClicked() {
-    let obj = document.getElementById("primary-sq");
-    obj.removeEventListener("click", squareClicked);
-    obj.innerHTML = "LOADING";
+    square.removeEventListener("click", squareClicked);
+    square.innerHTML = "LOADING";
     startListening();
   }
 

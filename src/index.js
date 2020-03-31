@@ -47,10 +47,22 @@ function createEventListeners(){
     square.innerHTML = "LOADING";
     startListening();
   }
-
+// -------------------- //
   window.addEventListener('resize', resizeWater);
 
   function resizeWater() {
     $(".water-container").raindrops("resizeCanvas");
   }
+// -------------------- //
+
+  document.addEventListener('keypress', logKey);
+
+  function logKey(e) {
+    let keyVal = e.code.toString();
+    if (keyVal==="KeyN"){
+      // square.classList.remove("float");
+      square.classList.add("shakeNo");
+    }
+  }
+
 }

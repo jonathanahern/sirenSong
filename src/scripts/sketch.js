@@ -12,7 +12,6 @@ export const sketch = (p) => {
   let pitch;
   let audioContext;
 
-
   p.setup = function () {
     p.userStartAudio();
     audioContext = p.getAudioContext();
@@ -33,7 +32,6 @@ export const sketch = (p) => {
     if (error) {
       console.error(error);
     } else {
-
       var vol = mic.getLevel() * 100;
       if (frequency && vol > 0.7) {
         freq = frequency;

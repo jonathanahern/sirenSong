@@ -28,6 +28,7 @@ function startListening() {
 
 function moveSq1(){
   square.innerHTML = "";
+  square.classList.remove("initialPos");
   square.classList.add("riseUp");
   setTimeout(startFloating, 5000);
 }
@@ -58,11 +59,22 @@ function createEventListeners(){
   document.addEventListener('keypress', logKey);
 
   function logKey(e) {
+
+
+
     let keyVal = e.code.toString();
     if (keyVal==="KeyN"){
-      // square.classList.remove("float");
-      square.classList.add("shakeNo");
+      let obj = document.getElementById("herd-container");
+      obj.classList.add("shakeNo");
+      setTimeout(removeClass, 1000, obj,"shakeNo");
     }
+
+    function removeClass(obj, str) {
+      obj.classList.remove(str);
+    }
+
   }
+
+
 
 }

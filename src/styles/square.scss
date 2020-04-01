@@ -1,11 +1,7 @@
 #herd-container{
-	width: 50%;
-	min-width: 500px;
-	height: 450px;
-	top: 50%;
-	left: 50%;
+	width: 100%;
+	height: 100%;
 	position: absolute;
-	transform: translate(-50%,-50%);
 	z-index: 1000;
 }
 
@@ -20,13 +16,18 @@
 #primary-sq {
 	height: 150px;
 	width: 200px;
-	background-color: transparent;
+	background-color: aquamarine;
 	top: 30%;
 	left: 35%;
 }
 
+.initialPos {
+	animation: still 10s ease-in-out infinite forwards;
+}
+
 .float {
 	animation: float 3s ease-in-out infinite;
+	animation-fill-mode: forwards;
 }
 
 .riseUp {
@@ -34,22 +35,30 @@
 }
 
 .shakeNo {
-  animation: shakeNo 1.82s cubic-bezier(.36,.07,.19,.97) both;
-  transform: translate3d(0, 0, 0) translatey(-10px);
+  animation: shakeNo 1s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes still {
+	0% {
+		transform: translatey(0px) translateX(0px);
+	}
+	100% {
+		transform: translatey(0px) translateX(0px);
+	}
 }
 
 @keyframes float {
 	0% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(-10px);
+		transform: translatey(0px);
 	}
 	50% {
 		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.4);
-		transform: translatey(-20px);
+		transform: translatey(-10px);
 	}
 	100% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(-10px);
+		transform: translatey(0px);
 	}
 }
 
@@ -64,24 +73,24 @@
 	}
 	100% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(-10px);
+		transform: translatey(0px);
 	}
 }
 
 @keyframes shakeNo {
   10%, 90% {
-    transform: translatex(-1px) translatey(-10px);
+    transform: translateX(-2px);
   }
   
   20%, 80% {
-    transform: translatex(-2px) translatey(-10px);
+    transform: translateX(4px);
   }
 
   30%, 50%, 70% {
-    transform: translatex(-4px) translatey(-10px);
+    transform: translateX(-8px);
   }
 
   40%, 60% {
-    transform: translatex(4px);
+    transform: translateX(8px);
   }
 }

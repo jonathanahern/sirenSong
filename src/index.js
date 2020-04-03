@@ -64,13 +64,13 @@ function createEventListeners(){
 
     let keyVal = e.code.toString();
     if (keyVal==="KeyN"){
-      let obj = document.getElementById("herd-container");
-      obj.classList.add("shakeNo");
-      setTimeout(removeClass, 1000, obj,"shakeNo");
+      let element = document.getElementById("herd-container");
+      element.classList.add("shakeNo");
+      setTimeout(removeClass, 1000, element,"shakeNo");
     }
 
-    function removeClass(obj, str) {
-      obj.classList.remove(str);
+    function removeClass(element, str) {
+      element.classList.remove(str);
     }
 
   }

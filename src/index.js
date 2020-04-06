@@ -63,7 +63,7 @@ function createEventListeners(){
 
 
     let keyVal = e.code.toString();
-    if (keyVal==="KeyN"){
+    if (keyVal==="KeyS"){
       let element = document.getElementById("herd-container");
       element.classList.add("shakeNo");
       setTimeout(removeClass, 1000, element,"shakeNo");

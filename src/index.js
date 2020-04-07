@@ -23,10 +23,10 @@ function startListening() {
   console.log('listen');
   const containerElement = document.getElementById("p5-container");
   new p5(sketch, containerElement);
-  setTimeout(moveSq1, 3000);
+  setTimeout(moveSq, 3000);
 }
 
-function moveSq1(){
+function moveSq(){
   square.innerHTML = "";
   square.classList.remove("initialPos");
   square.classList.add("riseUp");

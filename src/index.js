@@ -63,10 +63,14 @@ function createEventListeners(){
 
 
     let keyVal = e.code.toString();
-    if (keyVal==="KeyS"){
+    if (keyVal==="KeyN"){
       let element = document.getElementById("herd-container");
       element.classList.add("shakeNo");
       setTimeout(removeClass, 1000, element,"shakeNo");
+    } else if (keyVal === "KeyY"){
+      let element = document.getElementById("herd-container");
+      element.classList.add("jumpYes");
+      setTimeout(removeClass, 2000, element, "jumpYes");
     }
 
     function removeClass(element, str) {

@@ -1,8 +1,17 @@
 #herd-container{
 	width: 100%;
 	height: 100%;
+		height: 150px;
+	width: 200px;
 	position: absolute;
 	z-index: 1000;
+	top: 30%;
+	left: 35%;
+}
+
+#inner-container{
+	width:100%;
+	height: 100%;
 }
 
 .square {
@@ -14,11 +23,9 @@
 }
 
 #primary-sq {
-	height: 150px;
-	width: 200px;
+	width: 100%;
+	height: 100%;
 	background-color: aquamarine;
-	top: 30%;
-	left: 35%;
 }
 
 .initialPos {
@@ -39,7 +46,7 @@
 }
 
 .jumpYes {
-  animation: spring 2s ease forwards;
+  animation: jumpYes 2s ease forwards;
 }
 
 @keyframes still {
@@ -101,13 +108,13 @@
 
 @keyframes jumpYes { 
   0% {
-    transform: scale(1.01) translateY(0); 
+    transform: scale(1) translateY(0); 
   }
   10% {
     transform: scale(1.2, 0.6); 
   }
   30% { 
-    transform: scale(0.8, 1.1) translateY(-30px); 
+    transform: scale(0.8, 1.1) translateY(-100px); 
   }
   50% { 
     transform: scale(1) translateY(0); 

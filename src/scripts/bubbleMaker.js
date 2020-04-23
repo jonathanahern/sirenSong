@@ -1,5 +1,5 @@
 import { soundArr, clearArr } from "./sketch";
-
+import { hitWater } from "../index";
 const colorArr = [
     "rgb(9,81,149)",
     "rgb(76,148,75)",
@@ -100,4 +100,15 @@ function splash(pos, wave) {
     $(".water-container").raindrops("splash", pos, wave);
     splashPosArr.shift();
     splashWaveArr.shift();
+    if (pos >= 0 && pos < .15) {
+        hitWater(1);
+    } else if (pos >= .15 && pos < .35) {
+        hitWater(2);
+    } else if (pos >= .35 && pos < .55) {
+        hitWater(3);
+    } else if (pos >= .55 && pos < .75) {
+        hitWater(4);
+    } else if (pos >= .75){
+        hitWater(5);
+    }
 }

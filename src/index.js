@@ -65,16 +65,21 @@ function createEventListeners(){
 
     let keyVal = e.code.toString();
     if (keyVal==="KeyN"){
-      let element = document.getElementById("herd-container");
-      element.classList.add("shakeNo");
-      setTimeout(removeClass, 1000, element,"shakeNo");
+      // let element = document.getElementById("herd-container");
+      // element.classList.add("shakeNo");
+      // setTimeout(removeClass, 1000, element,"shakeNo");
     } else if (keyVal === "KeyY"){
-      let element = document.getElementById("herd-container");
-      let innerElement = document.getElementById("inner-container");
-      element.classList.add("jumpYes");
-      innerElement.classList.add("jumpYesRotate");
-      setTimeout(removeClass, 3500, element, "jumpYes");
-      setTimeout(removeClass, 2000, innerElement, "jumpYesRotate");
+      let parent = document.getElementById("inner-container");
+      let sq = document.getElementById("primary-sq");
+      let newPulse = document.createElement("DIV");
+      newPulse.className = "new-pulse";
+      sq.appendChild(newPulse);
+      // let element = document.getElementById("herd-container");
+      // let innerElement = document.getElementById("inner-container");
+      // element.classList.add("jumpYes");
+      // innerElement.classList.add("jumpYesRotate");
+      // setTimeout(removeClass, 3500, element, "jumpYes");
+      // setTimeout(removeClass, 2000, innerElement, "jumpYesRotate");
     }
 
     function removeClass(element, str) {
@@ -104,5 +109,12 @@ export function hitWater(pos){
   function removeClass(element, str) {
     element.classList.remove(str);
   }
+
+}
+
+function pulse (color) {
+
+  let sq = document.getElementById("primary-sq");
+  console.log (sq.offsetTop);
 
 }

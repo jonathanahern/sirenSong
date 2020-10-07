@@ -61,8 +61,6 @@ function createEventListeners(){
 
   function logKey(e) {
 
-
-
     let keyVal = e.code.toString();
     if (keyVal==="KeyN"){
       // let element = document.getElementById("herd-container");

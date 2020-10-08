@@ -70,6 +70,23 @@
   animation: jumpYesRotate 2s ease forwards;
 }
 
+#water{
+	background-color: beige;
+}
+
+#boat-container{
+	width:100%;
+	height: 150px;
+	position:absolute;
+	bottom:60px;
+}
+
+.boat{
+	width:10%;
+	position:absolute;
+	bottom:50%;
+}
+
 @keyframes still {
 	0% {
 		transform: translatey(0px) translateX(0px);
@@ -170,3 +187,5 @@
 		transform: scale(15.0) translateZ(-1px);
 	}
 }
+
+

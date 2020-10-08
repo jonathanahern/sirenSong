@@ -40,6 +40,15 @@ function startFloating(){
   square.classList.add("float");
 }
 
+function addABoat(){
+  const container = document.getElementById("boat-container");
+  let boat = document.createElement("img");
+  boat.src = "/src/images/boat.png";
+  boat.style.width = "100px";
+  // newPulse.className = "new-pulse";
+  container.appendChild(boat);
+}
+
 function createEventListeners(){
 
   document.getElementById("primary-sq").addEventListener("click", squareClicked);
@@ -63,6 +72,7 @@ function createEventListeners(){
 
     let keyVal = e.code.toString();
     if (keyVal==="KeyN"){
+      addABoat();
       // let element = document.getElementById("herd-container");
       // element.classList.add("shakeNo");
       // setTimeout(removeClass, 1000, element,"shakeNo");

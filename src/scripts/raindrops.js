@@ -60,7 +60,7 @@ $.widget("water.raindrops", {
   resizeCanvas: function () {
     canvas = document.getElementById("canvasWater");
 
-    this.options.canvasHeight = this.element.height() / 4;
+    // this.options.canvasHeight = this.element.height() / 4;
     this.options.canvasWidth = this.element.width();
     
     this.options.realWidth = this.options.canvasWidth + this.options.rightPadding;
@@ -80,7 +80,11 @@ $.widget("water.raindrops", {
     } else {
       this.options.rippleSpeed = .05;
     }
-    this.options.splashPos = pos;
+    splashPos = (pos/100)+.1;
+    if (splashPos > .93){
+      splashPos = .93;
+    }
+    this.options.splashPos = splashPos;
     this.options.waveHeight = wave;
   },
 

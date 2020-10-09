@@ -83,6 +83,12 @@ audio {
   display: block;
 }
 
+#dropHolder img{
+  width: 100%;
+  position:absolute;
+  z-index: 500;
+}
+
 .bubble{
   z-index: 100;
   position: absolute;

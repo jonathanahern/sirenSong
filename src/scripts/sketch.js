@@ -33,11 +33,10 @@ export const sketch = (p) => {
       console.error(error);
     } else {
       var vol = mic.getLevel() * 100;
-      if (frequency && vol > 0.7) {
+      if (frequency && vol > 0.05) {
         freq = frequency;
         soundArr.push(freq)
       }
-
     }
     pitch.getPitch(gotPitch);
   }
@@ -46,7 +45,6 @@ export const sketch = (p) => {
     console.log("model loaded")
     pitch.getPitch(gotPitch);
   }
-
 
   p.draw = function () {
   };

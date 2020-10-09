@@ -1,5 +1,7 @@
 import { soundArr, clearArr } from "./sketch";
+import { boatTimer } from "./boats";
 import { hitWater } from "../index";
+
 const colorArr = [
     "rgb(9,81,149)",
     "rgb(76,148,75)",
@@ -10,7 +12,7 @@ const colorArr = [
 
 let makingBubble = false;
 let bubbleSize = 25;
-let marginTop = 10.0;
+let marginTop = 47.0;
 let waveHeight = 100;
 let currentBubble;
 let currentPitchArr = [];
@@ -25,24 +27,24 @@ export const bubbleLoop = () => {
 
     setInterval(function () {
         let soundSize = soundArr.length;
-        if (!makingBubble && soundSize > 0) {
+        if (!makingBubble && soundSize > 3) {
             makingBubble = true;
             currentBubble = document.createElement("DIV");
             let pitch = (arrAvg(soundArr) - 120) * .0042;
             currentPitchArr.push(pitch);
             let colorReturn = getBubbleColor(pitch);
             currentBubble.style.backgroundColor = colorReturn[0];
-            currentBubble.style.right = colorReturn[1];
             splashPos = colorReturn[2];
             currentBubble.className = "bubble wiggle";
             parent.appendChild(currentBubble);
-        } else if (makingBubble && soundSize > 0 && waveHeight < 800) {
+            currentBubble.style.left = colorReturn[1];
+        } else if (makingBubble && soundSize > 3 && waveHeight < 800) {
             let newPitch = (arrAvg(soundArr) - 120) * .0042;
             currentPitchArr.push(newPitch);
             let avgPitch = arrAvg(currentPitchArr);
             let newColorReturn = getBubbleColor(avgPitch);
             currentBubble.style.backgroundColor = newColorReturn[0];
-            currentBubble.style.right = newColorReturn[1];
+            currentBubble.style.left = newColorReturn[1];
             splashPos = newColorReturn[2];
             bubbleSize += 5;
             marginTop += .75;
@@ -50,22 +52,22 @@ export const bubbleLoop = () => {
             currentBubble.style.height = `${bubbleSize}px`;
             currentBubble.style.width = `${bubbleSize}px`;
             currentBubble.style.marginTop = `${marginTop}px`;
-        } else if ((makingBubble && soundSize < 1) || waveHeight >= 775) {
+        } else if ((makingBubble && soundSize < 3) || waveHeight >= 775) {
             currentPitchArr = [];
             makingBubble = false;
             bubbleSize = 25;
-            marginTop = 10.0;
+            marginTop = 47.0;
             moveBubble(currentBubble, parent);
             splashPosArr.push(splashPos);
             splashWaveArr.push(waveHeight);
             waveHeight = 100;
-            setTimeout(function () { splash(splashPosArr[0], splashWaveArr[0]); }, 1400);
+            setTimeout(function () { splash(splashPosArr[0], splashWaveArr[0]); }, 1350);
         }
         clearArr();
+        boatTimer();
     }, 200);
 
 };
-
 
 const moveBubble = (bubble, parent) => {
     var pos = 0;
@@ -83,20 +85,29 @@ const moveBubble = (bubble, parent) => {
 }
 
 const getBubbleColor = (pitch) => {
+
+    function clamp(num, min, max) {
+      return num <= min ? min : num >= max ? max : num;
+    }
+
+    let newPitch = Math.round(clamp(pitch.toFixed(2), 0, 1) * 93);
+    let pitchStr = newPitch.toString() + "%";
     if (pitch < .2) {
-        return [colorArr[0], "90%", 0.10];
+        return [colorArr[0], pitchStr, newPitch];
     } else if (pitch >= .2 && pitch < .4) {
-        return [colorArr[1], "70%", 0.3];
+        return [colorArr[1], pitchStr, newPitch];
     } else if (pitch >= .4 && pitch < .6) {
-        return [colorArr[2], "50%", 0.5];
+        return [colorArr[2], pitchStr, newPitch];
     } else if (pitch >= .6 && pitch < .8) {
-        return [colorArr[3], "30%", 0.7];
+        return [colorArr[3], pitchStr, newPitch];
     } else {
-        return [colorArr[4], "10%", 0.89];
+        return [colorArr[4], pitchStr, newPitch];
     }
 }
 
 function splash(pos, wave) {
+    // console.log("pos",pos);
+    // console.log("Wave",wave);
     $(".water-container").raindrops("splash", pos, wave);
     splashPosArr.shift();
     splashWaveArr.shift();

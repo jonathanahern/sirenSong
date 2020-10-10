@@ -77,12 +77,59 @@
 	bottom:60px;
 }
 
-.boat{
+.boat-part-holder{
 	animation: boatFloat 3s linear infinite;
-	width:10%;
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+	width: 10%;
 	position:absolute;
 	bottom:5px;
 	transition: all 1s ease;
+	left:50%;
+
+}
+
+.boat-2{width:80%;}
+.boat-3{width:120%;}
+.boat-4{width:160%;}
+.boat-5{width:200%;}
+
+.sail-2{width:70%;}
+.sail-3{width:100%;}
+.sail-4{width:130%;}
+.sail-5{width:160%;}
+
+.cont-size-2{width:60%;top:45%;height: 30%;}
+.cont-size-3{width:100%;top:48%;height: 25%;}
+.cont-size-4{width:140%;top:52%;height: 20%;}
+.cont-size-5{width:180%;top:55%;height: 15%;}
+
+.sailor-container{
+
+	display:flex;
+	justify-content: space-around;
+	position: absolute;
+	flex-wrap: wrap;
+}
+
+.sailor-ind-container{
+
+	height: 100%;
+	width: 40%;
+}
+
+.ind-size-2{width:40%;}
+.ind-size-3{width:28%;}
+.ind-size-4{width:20%;}
+.ind-size-5{width:15%;}
+
+.sailor-container img{
+	height:90%;
+}
+
+.sunkBoat {
+	animation: sunkBoat 2s linear forwards;
 }
 
 @keyframes still {
@@ -106,6 +153,18 @@
 	}
 	100% {
 		transform: translatey(0px) rotate(0deg);
+	}
+}
+
+@keyframes sunkBoat {
+	0% {
+		transform: translatey(0px) rotate(0deg);
+	}
+	50% {
+		transform: translatey(75px) rotate(180deg);
+	}
+	100% {
+		transform: translatey(300px) rotate(180deg);
 	}
 }
 

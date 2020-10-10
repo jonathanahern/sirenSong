@@ -68,7 +68,9 @@ audio {
   z-index: -10;
   position: relative;
   top: 0; bottom: 0; right: 0; left: 0;
-  background-color: firebrick;
+  background: url('/src/images/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100%;
   width: 100%;
 }
@@ -89,16 +91,54 @@ audio {
   z-index: 500;
 }
 
+#fiftyPercent{
+  height: 22px;
+  width: 2px;
+  background-color: pink;
+  z-index: 100;
+  position: absolute;
+  left:50%;
+}
+
+#health-bar-container{
+  position:absolute;
+  width:20px;
+  height: 200px;
+  border: white solid 2px;
+  border-radius: 3px;
+  top: 50px;
+  left: 8px;
+  z-index: 100001;
+}
+
+#health-bar {
+  width:100%;
+  height: 100%;
+  background-color: rgb(169, 47, 26);
+  position:absolute;
+  bottom: 0px;
+  transition: all 1s ease;
+}
+
+#health-bar div:nth-child(1){
+  width:100%;
+  height: 100%;
+  background-color: white;
+  position:absolute;
+  bottom: 0px;
+}
+
 .bubble{
   z-index: 100;
   position: absolute;
+  left:50%;
   transition: width .19s, height .19s, background-color .19s;
   transition: all 1s ease;
   width: 25px;
   height: 25px;
   border-radius: 0 50% 50% 50%;
-  transform: rotate(45deg) translateX(40%) translateY(-50%);
-  margin-top: 10px;
+  transform: rotate(45deg) translateX(-100%) translateY(-30%);
+  margin-top: 65px;
   box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0.3em 0.3em 1em rgba(0,0,0,0.3);
   border: white 2px solid;
 }
@@ -123,20 +163,12 @@ audio {
 }
 
 @keyframes wiggle {
-  10%, 90% {
-  transform: rotate(45deg) translateX(39%) translateY(-50%);
+  10%, 50%, 90% {
+    transform: rotate(45deg) translateX(-105%) translateY(-35%);
   }
 
-  20%, 80% {
-    transform: rotate(45deg) translateX(41%) translateY(-50%);
-  }
-
-  30%, 50%, 70% {
-    transform: rotate(45deg) translateX(37%) translateY(-50%);
-  }
-
-  40%, 60% {
-    transform: rotate(45deg) translateX(43%) translateY(-50%);
+  25%, 65% {
+    transform: rotate(45deg) translateX(-100%) translateY(-30%);
   }
 }
 

@@ -35,7 +35,6 @@ function moveSq(){
 }
 
 function startFloating(){
-  console.log("float");
   square.classList.remove("riseUp");
   square.classList.add("float");
 }

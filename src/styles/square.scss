@@ -90,6 +90,10 @@
 
 }
 
+.boat-part-holder img:nth-child(2){
+	z-index: 100;
+}
+
 .boat-2{width:80%;}
 .boat-3{width:120%;}
 .boat-4{width:160%;}
@@ -111,12 +115,14 @@
 	justify-content: space-around;
 	position: absolute;
 	flex-wrap: wrap;
+	
 }
 
 .sailor-ind-container{
 
 	height: 100%;
 	width: 40%;
+	z-index: 99;
 }
 
 .ind-size-2{width:40%;}
@@ -130,6 +136,28 @@
 
 .sunkBoat {
 	animation: sunkBoat 2s linear forwards;
+}
+
+.dead-sailor{
+	animation: deadSailor 1.2s linear forwards;
+}
+
+@keyframes deadSailor {
+	0% {
+		transform: scale(1.0) translateY(0) translateX(0);
+	}
+	20% {
+		transform: scale(2.75) translateY(0px) translateX(0);
+	}
+	60% {
+		transform: scale(1.5) translateY(100px) translateX(0);
+	}
+	80% {
+		transform: scale(0.0) translateY(100px) translateX(0);
+	}	
+	100% {
+		transform: scale(0.0) translateY(100px) translateX(0);
+	}	
 }
 
 @keyframes still {

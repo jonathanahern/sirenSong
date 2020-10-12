@@ -1,24 +1,23 @@
 let timer = 0;
 var container = null;
 var healthBar = null;
-let healthTotal = 24;
+let healthTotal = 20;
 export var boatArr = [];
-let boatWaitTime = [16,16,16,16,16,16,16,170];
-let boatSizes = [5,4,4,3,3,2,2,2];
+let boatWaitTime = [16,26,30,26,34,22,42,28];
+let boatSizes = [2,2,3,3,3,4,4,5];
 let boatDirection = [1,-1];
-let boatSpeed = [1, 1, 2, 2, 1];
+let boatSpeed = [1, 2, 2,2,3,3,4];
 
 
 document.addEventListener("DOMContentLoaded", () => {
   container = document.getElementById("boat-container");
   healthBar = document.getElementById("health-bar");
-
 });
 
 export const boatTimer = () => {
     timer += 1;
     if ( timer%boatWaitTime[0] === 0){
-        let firstNum = boatWaitTime.shift() - 2;
+        let firstNum = boatWaitTime.shift() - 0;
         if (firstNum < 5) {
             firstNum = 5;
         }
@@ -102,7 +101,10 @@ function moveBoats() {
 
     if (lastPos > 112 || lastPos < -12){
         healthTotal -= boatArr[0]["pointVal"];
-        healthBar.style.height = `${(healthTotal/24)*100}%`;
+        if (healthTotal < 1){
+            healthTotal=0
+        };
+        healthBar.style.height = `${(healthTotal/20)*100}%`;
         boatArr[0]["boatEle"].remove();
         boatArr.shift();
     }

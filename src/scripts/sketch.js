@@ -2,7 +2,7 @@ import ml5 from "ml5";
 
 export var soundArr = []
 
-export const clearArr = () => { 
+export const clearArr = () => {
   soundArr = [];
 }
 

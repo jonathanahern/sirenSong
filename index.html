@@ -3,31 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=East Sea Dokdo' rel='stylesheet'>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
-    <title>Binary Love Story</title>
+    <link rel="icon" href="/src/images/icon.png">
+    <title>Siren Song</title>
   </head>
 
   <body>
-    <div id="herd-container">
-      <!-- <div id="sq1" class="square sq1Start">1</div>
-      <div id="sq2" class="square">2</div>
-      <div id="sq3" class="square">3</div>
-      <div id="sq4" class="square">4</div>
-      <div id="sq5" class="square">5</div>
-      <div id="sq6" class="square">6</div> -->
-        <div id="inner-container">
-          <div id="primary-sq" class="square initialPos">CLICK HERE TO START</div>
-          
+
+    <div id="module-icon">
+      <div>
+        <div id="icon-holder">
+          <img src="/src/images/sirenSong.png" alt="">
         </div>
+        <h4 id="module-text">Welcome to Siren Song. Click below to access the microphone</h4>
+        <div id="button-holder">
+          <input type="image" src="/src/images/radio-microphone.png" />
+        </div>
+      </div>
     </div>
     
     <div id="background">
-      <div id="health-bar-container">
+      <div class="hidden" id="health-bar-container">
         <div id="health-bar"></div>
         <div></div>
       </div>
-      <div id="sailor-score">
+      <div class="hidden" id="sailor-score">
         <img src="/src/images/sailorDead.png" alt="">
         <h1 id="sailor-score-text">0</h1>
       </div>
@@ -38,35 +40,9 @@
       <div id="p5-container"></div>
       <div id="water" class="water-container">
         <div id="boat-container">
-          <!-- <div class="boat-part-holder">
-            <img src="/src/images/sail.png" alt="">
-            <img src="/src/images/boatBottom.png" alt="">
-            <div class="sailor-container">
-
-              <div class="sailor-ind-container">
-                <img src="/src/images/sailor.png" alt="">
-              </div>
-
-              <div class="sailor-ind-container">
-                <img src="/src/images/sailor.png" alt="">
-              </div>
-
-              <div class="sailor-ind-container">
-                <img src="/src/images/sailor.png" alt="">
-              </div>
-
-                            <div class="sailor-ind-container">
-                              <img src="/src/images/sailor.png" alt="">
-                            </div>
-
-            </div>
-          </div> -->
-          
         </div>
       </div>
     </div>
-
- 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.js"></script>

@@ -1,12 +1,14 @@
+import { gameOver } from "./setup";
+
 let timer = 0;
 var container = null;
 var healthBar = null;
 let healthTotal = 20;
 export var boatArr = [];
-let boatWaitTime = [16,26,30,26,34,22,42,28];
+let boatWaitTime = [10,18,28,20,30,12,32,20];
 let boatSizes = [2,2,3,3,3,4,4,5];
 let boatDirection = [1,-1];
-let boatSpeed = [1, 2, 2,2,3,3,4];
+let boatSpeed = [2,2,3,3,4];
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 export const boatTimer = () => {
     timer += 1;
     if ( timer%boatWaitTime[0] === 0){
-        let firstNum = boatWaitTime.shift() - 0;
+        let firstNum = (boatWaitTime.shift() - 2)/2;
         if (firstNum < 5) {
             firstNum = 5;
         }
@@ -90,23 +92,38 @@ function moveBoats() {
     for (let i = 0; i < boatArr.length; i++) {
       const boatObj = boatArr[i];
       const boatSpeed = boatObj["speed"] * boatObj["direction"];
-       if (boatObj["health"] > 0) {
-         boatObj["boatEle"].style.left = `${(boatObj["boatPos"] += boatSpeed)}%`;
-       }
+      const newBoatPos = boatObj["boatPos"] += boatSpeed;
+      if (boatObj["health"] > 0) {
+        boatObj["boatEle"].style.left = `${newBoatPos}%`;
+        if (newBoatPos > 112 || newBoatPos < -12){
+          boatGotAway(boatObj);
+        }
+      }
+      
     }
-
     if (boatArr[0]){
-        var lastPos = boatArr[0]["boatPos"];
-    }
-
-    if (lastPos > 112 || lastPos < -12){
-        healthTotal -= boatArr[0]["pointVal"];
-        if (healthTotal < 1){
-            healthTotal=0
-        };
-        healthBar.style.height = `${(healthTotal/20)*100}%`;
+      var lastPos = boatArr[0]["boatPos"];
+      if (boatArr[0]["health"] < 1){
         boatArr[0]["boatEle"].remove();
         boatArr.shift();
+      } else if (boatArr[0]["pointVal"]===10){
+        boatArr[0]["boatEle"].remove();
+        boatArr.shift();
+      }
+
     }
+
+}
+
+function boatGotAway(boatObj){
+  healthTotal -= boatObj["pointVal"];
+  boatObj["health"] = 0;
+  if (healthTotal < 1){
+      healthTotal=0
+      gameOver();
+  };
+  healthBar.style.height = `${(healthTotal/20)*100}%`;
+  boatObj["boatEle"].remove();
+  boatObj["pointVal"] = 10;
 
 }

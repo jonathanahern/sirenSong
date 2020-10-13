@@ -3,7 +3,7 @@ $.widget("water.raindrops", {
     waveLength: 340, // Wave Length. A numeric value. The higher the number, the smaller the wave length.
     canvasWidth: 0, // Width of the  water. Default is 100% of the parent's width
     canvasHeight: 150, // Height of the water. Default is 50% of the parent's height
-    color: "#00aeef", // Water Color
+    color: "#98CAEF", // Water Color
     frequency: 0, // Raindrops frequency. Higher number means more frequent raindrops.
     waveHeight: 100, // Wave height. Higher number means higher waves created by raindrops.
     density: 0.03, // Water density. Higher number means shorter ripples.

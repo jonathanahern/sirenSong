@@ -1,8 +1,8 @@
 import { soundArr, clearArr } from "./sketch";
 import { boatTimer, boatArr } from "./boats";
-import { hitWater } from "../index";
+import { lowNote, highNote } from "./setup";
 
-const colorArr = [
+export const colorArr = [
     "rgb(9,81,149)",
     "rgb(76,148,75)",
     "rgb(142,214,0)",
@@ -15,7 +15,6 @@ let scoreText = null;
 let makingBubble = false;
 let bubbleBuffer = true;
 let emptyCount = 0;
-let splashSize = 25;
 let bubbleSize = 25;
 let marginTop = 35.0;
 let waveHeight = 100;
@@ -45,7 +44,7 @@ export const bubbleLoop = () => {
             makingBubble = true;
             bubbleBuffer = false;
             currentBubble = document.createElement("DIV");
-            let pitch = (arrAvg(soundArr) - 120) * .0042;
+            let pitch = arrAvg(soundArr) - 50;
             currentPitchArr.push(pitch);
             let colorReturn = getBubbleColor(pitch);
             currentBubble.style.backgroundColor = colorReturn[0];
@@ -55,7 +54,7 @@ export const bubbleLoop = () => {
             currentBubble.style.left = colorReturn[1];
         } else if (makingBubble && emptyCount < 2 && waveHeight < 800) {
             if (soundArr.length> 1) {
-                let newPitch = (arrAvg(soundArr) - 120) * 0.0042;
+                let newPitch = arrAvg(soundArr) - 50 ;
                 currentPitchArr.push(newPitch);
                 let avgPitch = arrAvg(currentPitchArr);
                 let newColorReturn = getBubbleColor(avgPitch);
@@ -63,7 +62,7 @@ export const bubbleLoop = () => {
                 currentBubble.style.left = newColorReturn[1];
                 splashPos = newColorReturn[2];
             }
-            bubbleSize += 3;
+            bubbleSize += 5;
             marginTop += 3;
             waveHeight += 25;
             currentBubble.style.height = `${bubbleSize}px`;
@@ -76,7 +75,6 @@ export const bubbleLoop = () => {
             }, 1350);
             currentPitchArr = [];
             makingBubble = false;
-            splashSize = bubbleSize;
             bubbleSize = 25;
             marginTop = 35;
             moveBubble(currentBubble, parent);
@@ -91,7 +89,7 @@ export const bubbleLoop = () => {
 
 };
 
-const moveBubble = (bubble, parent) => {
+export const moveBubble = (bubble, parent) => {
     var pos = 0;
     bubble.className = "bubble fall"
     function step() {
@@ -99,36 +97,36 @@ const moveBubble = (bubble, parent) => {
             parent.removeChild(bubble);
         } else {
             pos += 4;
-            // bubble.style.top = pos + "px";
             window.requestAnimationFrame(step);
         }
     }
     window.requestAnimationFrame(step);
 }
 
-const getBubbleColor = (pitch) => {
+export const getBubbleColor = (pitch) => {
+
     function clamp(num, min, max) {
       return num <= min ? min : num >= max ? max : num;
     }
 
-    let newPitch = Math.round(clamp(pitch.toFixed(2), .05, .95) * 100);
-    let pitchStr = newPitch.toString() + "%";
-    if (pitch < .2) {
-        return [colorArr[0], pitchStr, newPitch];
-    } else if (pitch >= .2 && pitch < .4) {
-        return [colorArr[1], pitchStr, newPitch];
-    } else if (pitch >= .4 && pitch < .6) {
-        return [colorArr[2], pitchStr, newPitch];
-    } else if (pitch >= .6 && pitch < .8) {
-        return [colorArr[3], pitchStr, newPitch];
+    let newPitch = Math.round((clamp(Math.ceil(pitch), 0, 400))/4);
+    newPitch -= lowNote;
+    let adjPitch = Math.round(clamp((newPitch/(highNote-lowNote)).toFixed(2), .05, .95) * 100);
+    let pitchStr = adjPitch.toString() + "%";
+    if (adjPitch < 20) {
+        return [colorArr[0], pitchStr, adjPitch];
+    } else if (adjPitch >= 20 && adjPitch < 40) {
+        return [colorArr[1], pitchStr, adjPitch];
+    } else if (adjPitch >= 40 && adjPitch < 60) {
+        return [colorArr[2], pitchStr, adjPitch];
+    } else if (adjPitch >= 60 && adjPitch < 80) {
+        return [colorArr[3], pitchStr, adjPitch];
     } else {
-        return [colorArr[4], pitchStr, newPitch];
+        return [colorArr[4], pitchStr, adjPitch];
     }
 }
 
 function splash(pos, wave) {
-    // console.log("pos",pos);
-    // console.log("Wave",wave);
     splashPosArr.shift();
     splashWaveArr.shift();
     let boatsToRemove = [];

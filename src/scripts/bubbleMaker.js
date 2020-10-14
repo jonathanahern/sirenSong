@@ -1,6 +1,7 @@
 import { soundArr, clearArr } from "./sketch";
-import { boatTimer, boatArr } from "./boats";
-import { lowNote, highNote } from "./setup";
+import { boatTimer, boatArr, gameOverBool, startBoatAgain} from "./boats";
+import { lowNote, highNote,  } from "./setup";
+
 
 export const colorArr = [
     "rgb(9,81,149)",
@@ -11,7 +12,7 @@ export const colorArr = [
 ];
 let parent = null;
 let frontCloud = null;
-let scoreText = null;
+export var scoreText = "0";
 let makingBubble = false;
 let bubbleBuffer = true;
 let emptyCount = 0;
@@ -40,7 +41,7 @@ export const bubbleLoop = () => {
         } else {
             emptyCount = 0;
         }
-        if (!makingBubble && bubbleBuffer && soundSize > 2) {
+        if (!makingBubble && bubbleBuffer && soundSize > 2 && !gameOverBool) {
             makingBubble = true;
             bubbleBuffer = false;
             currentBubble = document.createElement("DIV");
@@ -130,12 +131,12 @@ function splash(pos, wave) {
     splashPosArr.shift();
     splashWaveArr.shift();
     let boatsToRemove = [];
-    const dropSize = Math.ceil(wave / 200) + 1; 
+    const dropSize = Math.ceil(wave / 200) + 2; 
     const adjPos = pos-4;
     for (let i = 0; i < boatArr.length; i++) {
         const boatPos = boatArr[i]["boatPos"];
         const boatSize = boatArr[i]["pointVal"]*1.25;
-        if (Math.abs(adjPos - boatPos)-(boatSize+dropSize) <= 2 && boatArr[i]["health"] > 0) {
+        if (Math.abs(adjPos - boatPos)-(boatSize+dropSize) <= 3 && boatArr[i]["health"] > 0) {
           boatsToRemove.push(i);
           hitBoat(boatArr[i], wave);
         }   
@@ -173,15 +174,29 @@ function sinkBoat(boatData) {
   let ele = boatData["boatEle"];
   
     setTimeout(function () {
-        ele.className = "boat-part-holder sunkBoat";
+        ele.classList.add("sunkBoat");
         const newScore = parseInt(scoreText.innerHTML) + boatData["pointVal"];
         scoreText.innerHTML = newScore;
         if(newScore.toString().length > 1){
             scoreText.style.left = "5px";
+        } else {
+            scoreText.style.left = "8px";
         }
     }, 400);
 
     setTimeout(function () {
+        boatData["floatStatus"] = false;
         ele.remove();
     }, 2200);
+}
+
+export function tryAgain() {
+    console.log("got to bubblemaker")
+    scoreText.innerHTML = 0;
+    makingBubble = false;
+    bubbleBuffer = true;
+    emptyCount = 0;
+    splashPosArr = [];
+    splashWaveArr = [];
+    startBoatAgain();
 }

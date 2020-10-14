@@ -1,4 +1,5 @@
 import ml5 from "ml5";
+import {lowListenMode} from "./setup";
 
 export var soundArr = []
 
@@ -42,6 +43,7 @@ export const sketch = (p) => {
   }
 
   function modelLoaded(){
+    setTimeout(function() { lowListenMode() },5000)
     pitch.getPitch(gotPitch);
   }
 

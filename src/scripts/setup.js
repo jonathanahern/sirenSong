@@ -1,88 +1,86 @@
 import { startListening } from "../index";
 import { soundArr, clearArr } from "./sketch";
-import { colorArr, moveBubble, bubbleLoop } from "./bubbleMaker";
+import { colorArr, moveBubble, bubbleLoop, scoreText, tryAgain} from "./bubbleMaker";
 
 const welcome = "Welcome to Siren Song. Click below to access the microphone";
 const lowSound = "Great! Now give us your lowest guttural bellow";
 const highSound = "Not bad! How about the highest angelic note you can muster";
-const readyString = "Okay Siren, sink those sailors and don't let too many get away!"
+const readyString = "Okay Siren, sink those sailors and don't let too many get away!";
+const gameOverText = "GAME OVER!";
+
 
 var text = null;
 var parent = null;
 var frontCloud = null;
 var buttonHolder = null;
 var setupLoopInterval = null;
+var loadingGif = null;
+var microphoneIcon = null;
+var cloudModule = null;
 let makingBubble=false;
 let phase = 1;
 let currentBubble;
 let currentPitchArr = [];
 let splashPos = 0;
+let empties = 0;
+let gameReady = false;
 export var lowNote = 0;
 export var highNote = 100;
-let done = false;
 const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 document.addEventListener("DOMContentLoaded", () => {
+
   text = document.getElementById("module-text");
   parent = document.getElementById("dropHolder");
   frontCloud = document.getElementById("cloudFront");
   buttonHolder = document.getElementById("button-holder");
+  loadingGif = document.getElementById("loading-gif");
+  microphoneIcon = document.getElementById("microphone-icon");
+  cloudModule = document.getElementById("cloud-module")
 
   text.innerHTML = welcome;
+  document.getElementById("try-again-button").onclick = function tryAgainInABit() {
+    cloudModule.classList.add("cloudUp");
+    cloudModule.classList.remove("cloudDown");
+    setTimeout(function() {
+      tryAgain();
+    },2000)
+  };
 
   document.getElementById("button-holder").onclick = function addMic() {
     if (phase === 1){
-      lowListenMode();
+      loadingGif.classList.remove("hidden");
+      microphoneIcon.classList.add("hidden");
       startListening();
       setupLoop();
-    } else if (phase === 2) {
-      buttonHolder.classList.add("hidden");
-      lowNote = splashPos;
-      done = true;
-      currentPitchArr = [];
-    } else if (phase === 3){
-      if (lowNote < highNote){
-        highNote = splashPos;
-        done = true;
-        currentPitchArr = [];
-      }
-    } else if (phase === 4){
-      startGame();
+      phase = 2;
     }
   }
 
 });
 
-function lowListenMode(){
-  phase = 2;
+export function lowListenMode(){
+  gameReady = true;
   text.innerHTML = lowSound;
-  let doneEle = document.createElement("h1");
-  doneEle.innerHTML = "DONE";
-  doneEle.className = "button-text";
-  buttonHolder.innerHTML = "";
-  buttonHolder.append(doneEle);
   buttonHolder.classList.add("hidden");
 }
 
 function highListenMode(){
+  lowNote = splashPos;
+  currentPitchArr = [];
   phase = 3;
   text.innerHTML = highSound;
-  buttonHolder.classList.add("hidden");
 }
 
 function readyMode(){
+  highNote = splashPos;
   phase = 4;
   text.innerHTML = readyString;
-  let readyEle = document.createElement("h1");
-  readyEle.innerHTML = "READY";
-  readyEle.className = "button-text";
-  buttonHolder.innerHTML = "";
-  buttonHolder.append(readyEle);
-  buttonHolder.style.paddingLeft = "0px";
+  setTimeout(function() { startGame() },5000)
 }
 
 function startGame(){
-  document.getElementById("module-icon").innerHTML = "";
+  cloudModule.classList.add("cloudUp");
   clearInterval(setupLoopInterval);
   document.getElementById("health-bar-container").classList.remove("hidden");
   document.getElementById("sailor-score").classList.remove("hidden");
@@ -93,9 +91,9 @@ function setupLoop() {
 
     setupLoopInterval = setInterval(function () {
         let soundSize = soundArr.length;
-        if (!makingBubble && soundSize >= 2) {
-            buttonHolder.classList.remove("hidden");
-            done = false;
+        empties = (soundSize < 2) ? empties +=1 : empties = 0;
+        if (!makingBubble && soundSize >= 2 && gameReady) {
+            empties = 0;
             makingBubble = true;
             currentBubble = document.createElement("DIV");
             let pitch = (arrAvg(soundArr))-50;
@@ -109,7 +107,7 @@ function setupLoop() {
             currentBubble.style.height = "50px";
             currentBubble.style.marginTop = "-60px";
             parent.insertBefore(currentBubble, frontCloud);
-        } else if (makingBubble && !done) {
+        } else if (makingBubble && empties < 4) {
             if (soundArr.length> 1) {
                 let newPitch = (arrAvg(soundArr));
                 currentPitchArr.push(newPitch);
@@ -123,7 +121,7 @@ function setupLoop() {
                 currentBubble.style.left = newColorReturn[1];
                 splashPos = newColorReturn[2];
             }
-        } else if (done && makingBubble){
+        } else if (makingBubble && empties > 3){
           setTimeout(function () {
             $(".water-container").raindrops("splash", splashPos, 500);
             if (phase===2){
@@ -132,13 +130,11 @@ function setupLoop() {
               readyMode();
             }
           }, 1350);
-           
             makingBubble = false;
             moveBubble(currentBubble, parent);
         }
         clearArr();
     }, 400);
-
 };
 
 function getBubbleSetup(pitch) {
@@ -163,5 +159,9 @@ function getBubbleSetup(pitch) {
 }
 
 export function gameOver(){
-  console.log("game over");
+  text.innerHTML = gameOverText;
+  document.getElementById("gameover-div").classList.remove("hidden");
+  document.getElementById("sailor-score-text-gameover").innerHTML = parseInt(scoreText.innerHTML);
+  cloudModule.classList.remove("cloudUp");
+  cloudModule.classList.add("cloudDown");
 }

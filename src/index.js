@@ -3,7 +3,6 @@ import './styles/index.scss';
 import "./scripts/raindrops";
 import "./scripts/setup";
 import { sketch } from "./scripts/sketch";
-import { bubbleLoop } from "./scripts/bubbleMaker";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 export function startListening() {
-  console.log('listen');
   const containerElement = document.getElementById("p5-container");
   new p5(sketch, containerElement);
 }

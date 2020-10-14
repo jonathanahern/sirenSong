@@ -80,7 +80,7 @@ $.widget("water.raindrops", {
     } else {
       this.options.rippleSpeed = .05;
     }
-    splashPos = (pos/100) - .02;
+    splashPos = (pos/100)-.01;
 
     function clamp(num, min, max) {
       return num <= min ? min : num >= max ? max : num;

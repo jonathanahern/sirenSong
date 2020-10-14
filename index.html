@@ -12,15 +12,26 @@
 
   <body>
 
-    <div id="module-icon">
-      <div>
-        <div id="icon-holder">
-          <img src="/src/images/sirenSong.png" alt="">
-        </div>
+    <div id="cloud-module">
+      <img src="/src/images/sirenSongCloud.png" alt="">
+      <div id="text-holder">
         <h4 id="module-text">Welcome to Siren Song. Click below to access the microphone</h4>
+
         <div id="button-holder">
-          <input type="image" src="/src/images/radio-microphone.png" />
+          <input id="microphone-icon" type="image" src="/src/images/radio-microphone.png" />
+          <img class="hidden" id="loading-gif"class= "hidden" src="/src/images/Rolling-1s-200px.gif" alt="">
         </div>
+
+        <div class="hidden" id="gameover-div">
+          <div id="sailor-score-gameover">
+            <img src="/src/images/sailorDead.png" alt="">
+            <h1 id="sailor-score-text-gameover">990</h1>
+          </div>
+          <div id="try-again-button">
+            <input  type="image" src="/src/images/playAgain.png" />
+          </div>
+        </div>
+
       </div>
     </div>
     

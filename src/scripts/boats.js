@@ -5,11 +5,12 @@ var container = null;
 var healthBar = null;
 let healthTotal = 20;
 export var boatArr = [];
-let boatWaitTime = [10,18,28,20,30,12,32,20];
+let boatWaitTimeConst = [10,18,28,20,24,12,32,20];
+let boatWaitTime = [10,18,28,20,24,12,28,20];
 let boatSizes = [2,2,3,3,3,4,4,5];
 let boatDirection = [1,-1];
-let boatSpeed = [2,2,3,3,4];
-
+let boatSpeed = [2,3,3,4];
+export var gameOverBool = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   container = document.getElementById("boat-container");
@@ -18,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export const boatTimer = () => {
     timer += 1;
-    if ( timer%boatWaitTime[0] === 0){
-        let firstNum = (boatWaitTime.shift() - 2)/2;
+    if ( timer%boatWaitTime[0] === 0 && !gameOverBool){
+        let firstNum = boatWaitTime.shift() - 2;
         if (firstNum < 5) {
             firstNum = 5;
         }
@@ -83,7 +84,8 @@ function addABoat(size, direction, boatSpeed) {
     health: size,
     direction: direction,
     speed: boatSpeed,
-    pointVal: size
+    pointVal: size,
+    floatStatus: true,
   };
   boatArr.push(boatObj);
 }
@@ -102,8 +104,7 @@ function moveBoats() {
       
     }
     if (boatArr[0]){
-      var lastPos = boatArr[0]["boatPos"];
-      if (boatArr[0]["health"] < 1){
+      if (!boatArr[0]["floatStatus"]){
         boatArr[0]["boatEle"].remove();
         boatArr.shift();
       } else if (boatArr[0]["pointVal"]===10){
@@ -120,10 +121,17 @@ function boatGotAway(boatObj){
   boatObj["health"] = 0;
   if (healthTotal < 1){
       healthTotal=0
+      gameOverBool = true;
       gameOver();
   };
   healthBar.style.height = `${(healthTotal/20)*100}%`;
   boatObj["boatEle"].remove();
   boatObj["pointVal"] = 10;
+}
 
+export function startBoatAgain(){
+  healthTotal = 20;
+  healthBar.style.height = `${(healthTotal/20)*100}%`;
+  gameOverBool = false;
+  boatWaitTime = boatWaitTimeConst.slice();
 }

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+input:focus{
+    outline: none;
+}
+
 html, body, .background {
   height: 100%;
   width:100%;
@@ -173,6 +177,7 @@ audio {
   z-index: 1000;
 }
 
+
 .wiggle {
   animation: wiggle 1.0s;
   animation-iteration-count: infinite;
@@ -183,49 +188,47 @@ audio {
   animation-timing-function: ease-in;
 }
 
-#module-icon{
+#cloud-module{
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
 }
 
-#module-icon > div{
+.cloudUp {
+  animation: cloudUp 2.0s ease forwards;
+}
+
+.cloudDown {
+  animation: cloudDown 2.0s ease forwards;
+}
+
+#cloud-module > img{
   position: absolute;
   transform: translate(50%, -50%);
+  top: 45%;
+  right: 50%;
+  width: 500px;
+  z-index: 10;
+}
+
+#text-holder{
+  transform: translate(50%, -50%);
+  position: absolute;
   top: 50%;
   right: 50%;
-  background-color: #A8D9F9;
-  border: white 5px solid;
-  border-radius: 4px;
-  width: 500px;
-  height: 350px;
-}
-
-#icon-holder{
-  width: 340px;
-  position: absolute;
-  transform: translate(50%, -50%);
-  right: 50%;
-  top: -10px;
-}
-
-#icon-holder img{
-  width: 100%;
-  z-index: 10;
+  height: 200px;
+  width: 380px;
+  z-index: 11;
 }
 
 #module-text{
   color: white;
+  text-shadow: 1px 1px #98CAEF;
   font-family: 'East Sea Dokdo';
   text-align: center;
-  margin-top: 100px;
   font-size: 40px;
 }
 
 #button-holder {
-  border: 4px solid white;
-  padding: 10px;
-  padding-left: 6px;
-  border-radius: 10px;
   height: 80px;
   width: 80px;
   margin: 10px auto;
@@ -236,19 +239,72 @@ audio {
   cursor: pointer;
 }
 
-#button-holder input {
+#button-holder input, #button-holder img{
   width:100%;
 }
 
-.button-text{
-  color: white;
+#gameover-div{
+  position: relative;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width:340px;
+  margin: 10px auto;
+}
+
+#sailor-score-gameover{
+  margin-top:18px;
+  width:60px;
+  height:90px;
+  position: relative;
+}
+#sailor-score-gameover img{
+  width:100%
+}
+
+#sailor-score-text-gameover{
+  position: absolute;
+  transform: translate(50%, -50%);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  color:white;
+  font-size: 42px;
+  text-shadow: 1px 1px #37383E;
   font-family: 'East Sea Dokdo';
-  text-align: center;
-  font-size: 32px;
+}
+
+#try-again-button{
+  width: 80px;
+  height: 80px;
+  margin-top:14px;
+}
+#try-again-button input{
+  width: 100%;
 }
 
 .hidden{
   display: none !important;
+}
+
+@keyframes cloudUp {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-1000px);
+  }
+}
+
+@keyframes cloudDown {
+  0% {
+    transform: translateY(-1000px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes wiggle {
@@ -264,4 +320,47 @@ audio {
 @keyframes fall {
   from {top: 0%;}
   to {top: 300%;}
+}
+
+@media only screen and (max-width: 820px) {
+  #cloud-module > img{
+    width: 360px;
+  }
+  #text-holder{
+    height: 120px;
+    width: 260px;
+  }
+
+  #module-text{
+    font-size: 28px;
+  }
+
+  #button-holder {
+    height: 40px;
+    width: 40px;
+}
+
+
+#gameover-div{
+  width:265px;
+}
+
+#sailor-score-gameover{
+  margin-top:18px;
+  width:60px;
+  height:90px;
+  position: relative;
+}
+
+
+#sailor-score-text-gameover{
+  font-size: 42px;
+}
+
+#try-again-button{
+  width: 80px;
+  height: 80px;
+  margin-top:14px;
+}
+
 }

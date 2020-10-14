@@ -1,6 +1,5 @@
 #boat-container{
 	width:100%;
-	height: 150;
 	position:absolute;
 	bottom:60px;
 }
@@ -63,11 +62,11 @@
 }
 
 .sunkBoat {
-	animation: sunkBoat 2s linear forwards;
+	animation: sunkBoat 2.2s ease forwards;
 }
 
 .dead-sailor{
-	animation: deadSailor 1.2s linear forwards;
+	animation: deadSailor 1.0s linear forwards;
 }
 
 @keyframes deadSailor {
@@ -80,7 +79,7 @@
 	60% {
 		transform: scale(1.5) translateY(100px) translateX(0);
 	}
-	80% {
+	70% {
 		transform: scale(0.0) translateY(100px) translateX(0);
 	}	
 	100% {

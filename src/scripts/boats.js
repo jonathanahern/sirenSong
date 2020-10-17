@@ -40,7 +40,7 @@ function addABoat(size, direction, boatSpeed) {
   boatPartHolder.className = "boat-part-holder";
 
   let sail = document.createElement("img");
-  sail.src = "https://jonathanahern.github.io/binaryLoveStory/src/images/sail.png";
+  sail.src = "https://jonathanahern.github.io/sirenSong/src/images/sail.png";
   sail.className = `sail-${size}`;
   if (direction > 0) {
     sail.style.transform = "scaleX(-1)";
@@ -48,7 +48,7 @@ function addABoat(size, direction, boatSpeed) {
   boatPartHolder.append(sail);
 
   let bottom = document.createElement("img");
-  bottom.src = "https://jonathanahern.github.io/binaryLoveStory/src/images/boatBottom.png";
+  bottom.src = "https://jonathanahern.github.io/sirenSong/src/images/boatBottom.png";
   bottom.className = `boat-${size}`;
   boatPartHolder.append(bottom);
 
@@ -62,7 +62,7 @@ function addABoat(size, direction, boatSpeed) {
     sailorContainer.append(oneSailorContainer);
 
     let sailor = document.createElement("img");
-    sailor.src = "https://jonathanahern.github.io/binaryLoveStory/src/images/sailor.png";
+    sailor.src = "https://jonathanahern.github.io/sirenSong/src/images/sailor.png";
     oneSailorContainer.append(sailor);
   }
 

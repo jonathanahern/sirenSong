@@ -178,7 +178,7 @@ function sinkBoat(boatData) {
         const newScore = parseInt(scoreText.innerHTML) + boatData["pointVal"];
         scoreText.innerHTML = newScore;
         if(newScore.toString().length > 1){
-            scoreText.style.left = "5px";
+            scoreText.style.left = "2px";
         } else {
             scoreText.style.left = "8px";
         }
@@ -193,6 +193,7 @@ function sinkBoat(boatData) {
 export function tryAgain() {
     console.log("got to bubblemaker")
     scoreText.innerHTML = 0;
+    scoreText.style.left = "8px";
     makingBubble = false;
     bubbleBuffer = true;
     emptyCount = 0;

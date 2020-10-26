@@ -73,7 +73,7 @@ audio {
   z-index: -10;
   position: relative;
   top: 0; bottom: 0; right: 0; left: 0;
-  background: url('https://jonathanahern.github.io/sirenSong/src/images/background.png');
+  background: url('https://jonathanahern.github.io/sirenSong/src/images/cliff-background.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -139,10 +139,21 @@ audio {
 #sailor-score-text{
   position:absolute;
   top: 10px;
-  left: 10px;
+  left: 8px;
   color:white;
   font-size: 20px;
   text-shadow: 1px 1px #37383E;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+
+}
+
+#cloud-instruction{
+  color:red;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  padding-top:6px;
+
 }
 
 .bubble{
@@ -213,7 +224,7 @@ audio {
 #text-holder{
   transform: translate(50%, -50%);
   position: absolute;
-  top: 50%;
+  top: 48%;
   right: 50%;
   height: 200px;
   width: 380px;
@@ -223,9 +234,9 @@ audio {
 #module-text{
   color: white;
   text-shadow: 1px 1px #98CAEF;
-  font-family: 'East Sea Dokdo';
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   text-align: center;
-  font-size: 40px;
+  font-size: 28px;
 }
 
 #button-holder {
@@ -271,7 +282,7 @@ audio {
   color:white;
   font-size: 42px;
   text-shadow: 1px 1px #37383E;
-  font-family: 'East Sea Dokdo';
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 #try-again-button{
@@ -281,6 +292,10 @@ audio {
 }
 #try-again-button input{
   width: 100%;
+}
+
+.float{
+  animation: float 2.3s ease-in-out infinite;
 }
 
 .hidden{
@@ -322,6 +337,19 @@ audio {
   to {top: 300%;}
 }
 
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-6px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
 @media only screen and (max-width: 820px) {
   #cloud-module > img{
     width: 360px;
@@ -332,7 +360,7 @@ audio {
   }
 
   #module-text{
-    font-size: 28px;
+    font-size: 20px;
   }
 
   #button-holder {
@@ -362,5 +390,6 @@ audio {
   height: 80px;
   margin-top:14px;
 }
+
 
 }

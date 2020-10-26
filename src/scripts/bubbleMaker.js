@@ -191,7 +191,6 @@ function sinkBoat(boatData) {
 }
 
 export function tryAgain() {
-    console.log("got to bubblemaker")
     scoreText.innerHTML = 0;
     scoreText.style.left = "8px";
     makingBubble = false;

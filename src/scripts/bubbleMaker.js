@@ -135,8 +135,8 @@ function splash(pos, wave) {
     const adjPos = pos-4;
     for (let i = 0; i < boatArr.length; i++) {
         const boatPos = boatArr[i]["boatPos"];
-        const boatSize = boatArr[i]["pointVal"]*1.25;
-        if (Math.abs(adjPos - boatPos)-(boatSize+dropSize) <= 3 && boatArr[i]["health"] > 0) {
+        const boatSize = boatArr[i]["pointVal"]*1.5;
+        if (Math.abs(adjPos - boatPos)-(boatSize+dropSize) <= 1 && boatArr[i]["health"] > 0) {
           boatsToRemove.push(i);
           hitBoat(boatArr[i], wave);
         }   
